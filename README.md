@@ -4,6 +4,34 @@
 	Hint: Base64, Hexdump
 	
 	### Jawab
+	asumsi kita telah mendownload *`nature.zip`* . 
+file tersebut berisi gambar-gambar yang telah terenkripsi dengan `base64`
+selanjutnya membuat folder baru bernama `nature` dan di dalam folder tersebut kita buatkan folder dengan nama `hasil` .
+barulah membuat file script bash dengan nama `prak1soal1.sh`
+
+``` bash
+for f in ./nature/*; do
+        ...
+done
+```
+syntax di atas digunakan untuk fungsi *for each* pada semua file foto yang ada di dalam folder nature.
+
+``` bash
+hexdump -C "$f"
+done
+```
+syntax di atas digunakan untuk menjaadikan *hexadeximal* .
+
+``` bash
+base64 -d "$f" | xxd -r > ./nature/hasil/$(basename $f .jpg)_baru.jpg
+done
+```
+syntax di atas digunakan untuk men*decode* file gambar yang telah di*hexdump* lalu di*reverse* ke bentuk format gambar kembali ke *binary* .
+
+barulah kita masukkan ke dalam crontab untuk pukul 14:14 pada tanggal 14 Februari atau hari tersebut adalah harijumat pada bulan Februari
+```
+14 14 14 2 5 /bin/bash /home/aku/Downloads/SoalShift/soal1.sh
+``
 	
 2. Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa:
 
@@ -92,14 +120,22 @@ sehingga huruf kapital atau tidak, tidak menjadi masalah.
 	d. Jalankan script tadi setiap 6 menit dari menit ke 2 hingga 30, contoh 13:02, 13:08, 13:14, dst.
 	
 	### Jawab
-	[Source Code](/soal5.sh)
-	
-	```bash
-	cat /var/log/syslog | awk '(/!sudo/ || /cron/ && /CRON/) && (NF<13){print}' > /home/affan/modul1/syslog.log
-	```
-	
-	- `cat /var/log/syslog`untuk melihat file Syslog.
-	- `/!sudo/ || /cron/ && /CRON/` agar tidak mengandung `sudo` tetapi mengandung `cron`.
-	- `NF<13` number of field kurang dari 13.
-	- `/home/affan/modul1/syslog.log` memasukkan pada direktori tersebut
-	- pada crontab ditulis `2-30/6 * * * * /bin/bash /home/affan/modul1/soal5.sh`.
+	``` shell
+awk '/cron/ || /CRON/ && !/sudo/ && !/SUDO/' /var/log/syslog | awk 'NF < 13' >> /home/vagrant/modul1/syslogno5.log
+```
+
+__penjelasan__
+
+``` shell
+awk '/cron/ || /CRON/ && !/sudo/ && !/SUDO/' /var/log/syslog
+```
+Perintah awk di atas untuk mencari data pada *`syslog`* dengan kata kunci **cron** dan bukan **sudo** dan harus *case insensitive* .
+
+barulah kita tampilkan line syslog degan jumlah field kurang dari 13 dan dimasukkan ke dalam file `/home/vagrant/modul1/syslogno5.log`
+
+untuk mensetting crontab:
+Every 6th minutes, from 2 through 30.
+
+``` shell
+2-30/6 * * * * /bin/bash /home/aku/Downloads/SoalShift/soal5.sh
+```
