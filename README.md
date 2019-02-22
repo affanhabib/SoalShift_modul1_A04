@@ -92,4 +92,14 @@ sehingga huruf kapital atau tidak, tidak menjadi masalah.
 	d. Jalankan script tadi setiap 6 menit dari menit ke 2 hingga 30, contoh 13:02, 13:08, 13:14, dst.
 	
 	### Jawab
+	[Source Code](/soal5.sh)
 	
+	```bash
+	cat /var/log/syslog | awk '(/!sudo/ || /cron/ && /CRON/) && (NF<13){print}' > /home/affan/modul1/syslog.log
+	```
+	
+	- `cat /var/log/syslog`untuk melihat file Syslog.
+	- `/!sudo/ || /cron/ && /CRON/` agar tidak mengandung `sudo` tetapi mengandung `cron`.
+	- `NF<13` number of field kurang dari 13.
+	- `/home/affan/modul1/syslog.log` memasukkan pada direktori tersebut
+	- pada crontab ditulis `2-30/6 * * * * /bin/bash /home/affan/modul1/soal5.sh`.
