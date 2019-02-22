@@ -4,8 +4,8 @@
 	Hint: Base64, Hexdump
 	
 	### Jawab
+	[Source Code](/soal2.sh) 
 	
-	### Langkah-Langkah
 	
 2. Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa:
 
