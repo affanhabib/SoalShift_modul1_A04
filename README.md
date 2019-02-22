@@ -89,6 +89,51 @@ dihapus.
 	d. Password yang dihasilkan tidak boleh sama.
 	
 	### Jawab
+Untuk  membuat password secara random, maka digunakan perintah :
+pass="$(dd if=/dev/urandom|tr -dc A-Za-z0-9|head -c 12)"
+
+Selanjutnya, kita harus melakukan predict apakah string yang berasi ter generate terdiri dari 
+uppercas, lowercas, dan angka.
+low=0
+            upp=0
+            num=0
+            for char in pass
+            do
+                if [[ $char == [A-Z] ]]
+                    then
+                    let upp=$upp+1;
+                    fi
+                if [[ $char == [a-z] ]]
+                    then
+                    let low=$low+1;
+                    fi
+                if [[ $char == [0-9] ]]
+                    then
+                    let num=$num+1;
+                    fi
+            done
+            [ $upp -gt 0 ] && [ $low -gt 0] && [$num -gt 0]
+do :;done
+
+Setelah itu, untuk menyimpan file sesuai urutan, dan menseleksi apakah password sudah tergenerate atau belum, gunakan perintah:
+i=1
+        file=/home/aku/Downloads/SoalShift/pass/password
+        while [ -f "$file$i.txt" ]
+        do
+                value=$(<$file$i.txt)
+                if test "$temp" = "$pass"
+                then
+                        break
+                fi
+                let i=$i+1
+        done
+        if test "$temp" = "$pass"
+        then
+                continue
+        fi
+        break
+        done
+echo "$pass" >$file$i.txt
 	
 	
 4. Lakukan backup file syslog setiap jam dengan format nama file “jam:menit tanggal- bulan-tahun”. Isi dari file backup terenkripsi dengan konversi huruf (string manipulation) yang disesuaikan dengan jam dilakukannya backup misalkan sebagai berikut:
