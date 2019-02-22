@@ -17,7 +17,7 @@ terbanyak pada soal poin a.
 	### Jawab
 	[Source Code](/soal2.sh)
 	
-	#####a. Negara dengan Penjualan Terbanyak
+	#### a. Negara dengan Penjualan Terbanyak
 	```bash
 	awk -F ',' '{if($7=="2012") qnt[$1]+=$10;} END {for(i in qnt) print qnt[i] "-" i}' WA_Sales_Products_2012-14.csv | sort -n -r | head -1 | awk -F '-' '{print "- " $2}'
 	```
@@ -28,7 +28,7 @@ terbanyak pada soal poin a.
 	- `head -1` mengambil baris teratas.
 	- `awk -F '-' '{print "- " $2}'` untuk hanya mencetak nama negara
 	
-	#####b. 3 Product Line Teratas pada Negara dengan Penjualan Terbanyak
+	#### b. 3 Product Line Teratas pada Negara dengan Penjualan Terbanyak
 	```bash
 	awk -F ',' '{if($7=="2012" && $1=="United States") qnt[$4]+=$10;} END{for(i in qnt) print qnt[i] "-" i}' WA_Sales_Products_2012-14.csv | sort -n -r | head -3 | awk -F '-' '{print "- " $2}'
 	```
@@ -40,7 +40,7 @@ terbanyak pada soal poin a.
 	- `head -3` mengambil 3 teratas.
 	- `awk -F '-' '{print "- " $2}'` jika pada poin a digunakan untuk mencetak nama negara, sekarang untuk mencetak nma Product Line.
 	
-	#####c. 3 Product Teratas pada Product Line Teratas
+	#### c. 3 Product Teratas pada Product Line Teratas
 	```bash
 	awk -F ',' '{if($7=="2012" && $1=="United States" &&($4=="Personal Accessories" || $4=="Outdoor Protection" || $4=="Camping Equipment")) qnt[$6]+=$10;} END {for(i in qnt) print qnt[i] "-" i}' WA_Sales_Products_2012-14.csv | sort -n -r | head -3 | awk -F '-' '{print "* " $2}'
 	```
