@@ -19,9 +19,13 @@ terbanyak pada soal poin a.
 	
 	######a. Negara dengan Penjualan Terbanyak
 	```bash
-	awk -F ',' '{if($7=="2012") qnt[$1]+=$10;} END {for(i in qnt) print i}' WA_Sales_Products_2012-14.csv | sort -n -r | head -1 ```
+	awk -F ',' '{if($7=="2012") qnt[$1]+=$10;} END {for(i in qnt) print i}' WA_Sales_Products_2012-14.csv | sort -n -r | head -1
+	```
 	
-		- `{if($7=="2012") qnt[$1]+=$10;}` untuk menghitung quantity tiap-tiap negara pada tahun 2012
+		- `if($7=="2012") qnt[$1]+=$10;` untuk menghitung quantity tiap-tiap negara pada tahun 2012
+		- `for(i in qnt) print i` mencetak nama negara
+		- `sort -n -r` mengurutkan quantity terbesar ke terkecil
+		- `head -1` mengambil baris teratas
 
 3. Buatlah sebuah script bash yang dapat menghasilkan password secara acak sebanyak 12 karakter yang terdapat huruf besar, huruf kecil, dan angka. Password acak tersebut disimpan pada file berekstensi .txt dengan ketentuan pemberian nama sebagai berikut:
 
