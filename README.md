@@ -31,7 +31,6 @@ syntax di atas digunakan untuk men*decode* file gambar yang telah di*hexdump* la
 barulah kita masukkan ke dalam crontab untuk pukul 14:14 pada tanggal 14 Februari atau hari tersebut adalah harijumat pada bulan Februari
 ```
 14 14 14 2 5 /bin/bash /home/aku/Downloads/SoalShift/soal1.sh
-``
 	
 2. Anda merupakan pegawai magang pada sebuah perusahaan retail, dan anda diminta untuk memberikan laporan berdasarkan file WA_Sales_Products_2012-14.csv. Laporan yang diminta berupa:
 
